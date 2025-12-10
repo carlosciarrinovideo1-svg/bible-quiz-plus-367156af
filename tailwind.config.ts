@@ -57,6 +57,21 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        quiz: {
+          pentateuco: "hsl(var(--quiz-pentateuco))",
+          profeti: "hsl(var(--quiz-profeti))",
+          antico: "hsl(var(--quiz-antico))",
+          vangeli: "hsl(var(--quiz-vangeli))",
+          nuovo: "hsl(var(--quiz-nuovo))",
+          grazia: "hsl(var(--quiz-grazia))",
+          misericordia: "hsl(var(--quiz-misericordia))",
+          umilta: "hsl(var(--quiz-umilta))",
+          saggezza: "hsl(var(--quiz-saggezza))",
+          coraggio: "hsl(var(--quiz-coraggio))",
+        },
+        streak: "hsl(var(--streak))",
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,20 +80,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
