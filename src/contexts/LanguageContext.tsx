@@ -1,10 +1,15 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { translations } from '@/lib/translations';
 
 type Language = 'it' | 'en' | 'es' | 'fr' | 'de' | 'pt' | 'zh' | 'ja' | 'ko' | 'ar' | 'ru' | 'hi';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type TranslationType = any;
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
+  t: TranslationType;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -37,8 +42,10 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     }
   }, [language]);
 
+  const t = translations[language] || translations.it;
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
