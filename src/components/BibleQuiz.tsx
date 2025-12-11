@@ -8,51 +8,7 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import LanguageSelector from '@/components/LanguageSelector';
 import BibleChatbot from '@/components/BibleChatbot';
 import { useAudioFeedback } from '@/hooks/useAudioFeedback';
-
-interface Question {
-  q: string;
-  a: string[];
-  c: number;
-  difficulty: 'easy' | 'medium' | 'hard';
-}
-
-const QUESTIONS: Record<string, Question[]> = {
-  pentateuco: [
-    { q: "Chi costruì l'arca secondo il comando di Dio?", a: ["Abramo", "Mosè", "Noè", "Davide"], c: 2, difficulty: 'easy' },
-    { q: "Quanti giorni durò il diluvio universale?", a: ["7 giorni", "40 giorni", "100 giorni", "1 anno"], c: 1, difficulty: 'easy' },
-    { q: "Chi fu il primo uomo creato da Dio?", a: ["Noè", "Abramo", "Adamo", "Mosè"], c: 2, difficulty: 'easy' },
-    { q: "In quale giorno Dio creò l'uomo?", a: ["Primo", "Terzo", "Sesto", "Settimo"], c: 2, difficulty: 'medium' },
-    { q: "Chi guidò gli Israeliti fuori dall'Egitto?", a: ["Abramo", "Mosè", "Giosuè", "Davide"], c: 1, difficulty: 'easy' },
-  ],
-  vangeli: [
-    { q: "In quale città nacque Gesù?", a: ["Nazareth", "Gerusalemme", "Betlemme", "Cafarnao"], c: 2, difficulty: 'easy' },
-    { q: "Chi battezzò Gesù nel fiume Giordano?", a: ["Pietro", "Giovanni Battista", "Paolo", "Andrea"], c: 1, difficulty: 'easy' },
-    { q: "Quanti apostoli scelse Gesù?", a: ["7", "10", "12", "15"], c: 2, difficulty: 'easy' },
-    { q: "Chi rinnegò Gesù tre volte?", a: ["Giuda", "Pietro", "Giovanni", "Matteo"], c: 1, difficulty: 'medium' },
-    { q: "Quanti pani usò Gesù per sfamare 5000 persone?", a: ["3", "5", "7", "12"], c: 1, difficulty: 'medium' },
-  ],
-  antico_testamento: [
-    { q: "Chi uccise il gigante Golia?", a: ["Saul", "Davide", "Sansone", "Giosuè"], c: 1, difficulty: 'easy' },
-    { q: "Chi fu inghiottito da un grande pesce?", a: ["Elia", "Eliseo", "Giona", "Daniele"], c: 2, difficulty: 'easy' },
-    { q: "Chi interpretò i sogni del faraone?", a: ["Mosè", "Giuseppe", "Daniele", "Elia"], c: 1, difficulty: 'medium' },
-    { q: "Quanti libri contiene l'Antico Testamento?", a: ["27", "39", "46", "66"], c: 1, difficulty: 'hard' },
-    { q: "Chi costruì il primo tempio di Gerusalemme?", a: ["Davide", "Salomone", "Mosè", "Esdra"], c: 1, difficulty: 'medium' },
-  ],
-  nuovo_testamento: [
-    { q: "Chi scrisse la maggior parte delle lettere del NT?", a: ["Pietro", "Giovanni", "Paolo", "Giacomo"], c: 2, difficulty: 'easy' },
-    { q: "Quale libro conclude la Bibbia?", a: ["Giovanni", "Ebrei", "Giuda", "Apocalisse"], c: 3, difficulty: 'easy' },
-    { q: "Chi ebbe la visione dell'Apocalisse?", a: ["Paolo", "Pietro", "Giovanni", "Luca"], c: 2, difficulty: 'medium' },
-    { q: "Quanti libri contiene il Nuovo Testamento?", a: ["21", "27", "33", "39"], c: 1, difficulty: 'medium' },
-    { q: "Chi era il medico che scrisse un Vangelo?", a: ["Marco", "Matteo", "Luca", "Giovanni"], c: 2, difficulty: 'hard' },
-  ],
-};
-
-const CATEGORY_COLORS: Record<string, { bg: string; text: string }> = {
-  pentateuco: { bg: 'bg-quiz-pentateuco', text: 'text-quiz-pentateuco' },
-  vangeli: { bg: 'bg-quiz-vangeli', text: 'text-quiz-vangeli' },
-  antico_testamento: { bg: 'bg-quiz-antico', text: 'text-quiz-antico' },
-  nuovo_testamento: { bg: 'bg-quiz-nuovo', text: 'text-quiz-nuovo' },
-};
+import { QUESTIONS, CATEGORY_COLORS, Question } from '@/data/quizQuestions';
 
 const BibleQuiz: React.FC = () => {
   const { t } = useLanguage();
