@@ -40,11 +40,9 @@
     --quiz-antico: 199 89% 48%;
     --quiz-vangeli: 0 84% 60%;
     --quiz-nuovo: 262 83% 58%;
-    --quiz-grazia: 330 81% 60%;
-    --quiz-misericordia: 25 95% 53%;
-    --quiz-umilta: 199 89% 48%;
-    --quiz-saggezza: 45 93% 47%;
-    --quiz-coraggio: 0 84% 60%;
+    --quiz-lettere: 330 81% 60%;
+    --quiz-salmi: 280 70% 50%;
+    --quiz-proverbi: 45 93% 47%;
 
     /* Special colors */
     --streak: 25 95% 53%;
@@ -96,11 +94,9 @@
     --quiz-antico: 199 85% 55%;
     --quiz-vangeli: 0 75% 55%;
     --quiz-nuovo: 262 80% 65%;
-    --quiz-grazia: 330 75% 65%;
-    --quiz-misericordia: 25 90% 58%;
-    --quiz-umilta: 199 85% 55%;
-    --quiz-saggezza: 45 88% 52%;
-    --quiz-coraggio: 0 75% 55%;
+    --quiz-lettere: 330 75% 65%;
+    --quiz-salmi: 280 65% 55%;
+    --quiz-proverbi: 45 88% 52%;
 
     --streak: 25 90% 58%;
     --success: 142 70% 45%;
