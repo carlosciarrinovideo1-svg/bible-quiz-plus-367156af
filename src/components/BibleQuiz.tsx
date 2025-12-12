@@ -8,12 +8,15 @@ import { Progress } from '@/components/ui/progress';
 import { 
   BookOpen, Home, Trophy, Volume2, VolumeX, 
   Clock, Flame, Play, ChevronRight, RotateCcw,
-  Zap, Target, Award
+  Zap, Target, Award, Medal
 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import LanguageSelector from './LanguageSelector';
+import { useAchievements } from '@/hooks/useAchievements';
+import { AchievementPopup } from './AchievementPopup';
+import { AchievementsPanel } from './AchievementsPanel';
 
-type Screen = 'home' | 'difficulty' | 'category' | 'quiz' | 'results';
+type Screen = 'home' | 'difficulty' | 'category' | 'quiz' | 'results' | 'achievements';
 type Difficulty = 'easy' | 'medium' | 'hard' | 'all';
 
 const CATEGORY_NAMES: Record<string, Record<string, string>> = {
@@ -88,20 +91,27 @@ const BibleQuiz = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
-  const [bestStreak, setBestStreak] = useState(0);
+  const [maxStreakThisQuiz, setMaxStreakThisQuiz] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
 
-  // Load best streak from localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem('bestStreak');
-    if (saved) setBestStreak(parseInt(saved));
-  }, []);
+  // Achievements system
+  const { 
+    achievements, 
+    stats, 
+    newUnlocks, 
+    recordQuizResult, 
+    clearNewUnlocks,
+    getUnlockedCount,
+    getTotalCount 
+  } = useAchievements();
 
   const nextQuestion = useCallback(() => {
     if (currentIndex + 1 >= questions.length) {
+      // Record quiz result for achievements
+      recordQuizResult(score, questions.length, selectedCategory, maxStreakThisQuiz);
       setScreen('results');
     } else {
       setCurrentIndex(i => i + 1);
@@ -109,7 +119,7 @@ const BibleQuiz = () => {
       setShowResult(false);
       setTimeLeft(DIFFICULTY_CONFIG[difficulty].time);
     }
-  }, [currentIndex, questions.length, difficulty]);
+  }, [currentIndex, questions.length, difficulty, score, selectedCategory, maxStreakThisQuiz, recordQuizResult]);
 
   const handleTimeout = useCallback(() => {
     setShowResult(true);
@@ -156,6 +166,7 @@ const BibleQuiz = () => {
     setCurrentIndex(0);
     setScore(0);
     setStreak(0);
+    setMaxStreakThisQuiz(0);
     setTimeLeft(DIFFICULTY_CONFIG[difficulty].time);
     setSelectedAnswer(null);
     setShowResult(false);
@@ -174,10 +185,7 @@ const BibleQuiz = () => {
       setScore(s => s + 1);
       setStreak(s => {
         const newStreak = s + 1;
-        if (newStreak > bestStreak) {
-          setBestStreak(newStreak);
-          localStorage.setItem('bestStreak', newStreak.toString());
-        }
+        setMaxStreakThisQuiz(prev => Math.max(prev, newStreak));
         return newStreak;
       });
     } else {
@@ -245,25 +253,31 @@ const BibleQuiz = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <Card className="text-center p-4">
               <Trophy className="w-8 h-8 mx-auto mb-2 text-amber-500" />
-              <p className="text-2xl font-bold">{bestStreak}</p>
+              <p className="text-2xl font-bold">{stats.bestStreak}</p>
               <p className="text-sm text-muted-foreground">{t.bestStreak}</p>
             </Card>
-            <Card className="text-center p-4">
-              <BookOpen className="w-8 h-8 mx-auto mb-2 text-blue-500" />
-              <p className="text-2xl font-bold">8</p>
-              <p className="text-sm text-muted-foreground">{t.category}</p>
+            <Card 
+              className="text-center p-4 cursor-pointer hover:bg-muted/50 transition-colors"
+              onClick={() => setScreen('achievements')}
+            >
+              <Medal className="w-8 h-8 mx-auto mb-2 text-purple-500" />
+              <p className="text-2xl font-bold">{getUnlockedCount()}/{getTotalCount()}</p>
+              <p className="text-sm text-muted-foreground">Badge</p>
             </Card>
             <Card className="text-center p-4">
               <Target className="w-8 h-8 mx-auto mb-2 text-green-500" />
-              <p className="text-2xl font-bold">800</p>
-              <p className="text-sm text-muted-foreground">{t.totalQuestions}</p>
+              <p className="text-2xl font-bold">{stats.totalCorrect}</p>
+              <p className="text-sm text-muted-foreground">{t.correctAnswers}</p>
             </Card>
             <Card className="text-center p-4">
               <Flame className="w-8 h-8 mx-auto mb-2 text-red-500" />
-              <p className="text-2xl font-bold">3</p>
-              <p className="text-sm text-muted-foreground">{t.difficulty}</p>
+              <p className="text-2xl font-bold">{stats.totalQuizzes}</p>
+              <p className="text-sm text-muted-foreground">Quiz</p>
             </Card>
           </div>
+          
+          {/* Achievements Popup */}
+          <AchievementPopup achievements={newUnlocks} onClose={clearNewUnlocks} />
         </div>
       </div>
     );
@@ -446,6 +460,7 @@ const BibleQuiz = () => {
   // RESULTS SCREEN
   if (screen === 'results') {
     const percentage = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
+    const isPerfect = score === questions.length;
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4 flex items-center justify-center">
@@ -454,6 +469,15 @@ const BibleQuiz = () => {
             <Trophy className={`w-20 h-20 mx-auto mb-6 ${percentage >= 70 ? 'text-yellow-500' : percentage >= 50 ? 'text-gray-400' : 'text-amber-700'}`} />
             <h2 className="text-3xl font-bold mb-2">{t.quizCompleted}</h2>
             <p className="text-muted-foreground mb-6">{categoryNames[selectedCategory]}</p>
+            
+            {isPerfect && (
+              <div className="mb-4 p-3 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 rounded-lg">
+                <span className="text-2xl">⭐</span>
+                <p className="font-semibold text-amber-700 dark:text-amber-300">
+                  {language === 'it' ? 'Punteggio Perfetto!' : 'Perfect Score!'}
+                </p>
+              </div>
+            )}
             
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="p-4 bg-muted rounded-lg">
@@ -485,6 +509,29 @@ const BibleQuiz = () => {
             </div>
           </CardContent>
         </Card>
+        
+        {/* Achievements Popup */}
+        <AchievementPopup achievements={newUnlocks} onClose={clearNewUnlocks} />
+      </div>
+    );
+  }
+
+  // ACHIEVEMENTS SCREEN
+  if (screen === 'achievements') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
+        <div className="container mx-auto max-w-4xl">
+          <header className="flex justify-between items-center mb-8">
+            <Button variant="ghost" onClick={goHome} className="gap-2">
+              <Home className="w-5 h-5" />
+              {t.home}
+            </Button>
+            <h1 className="text-xl font-bold">Badge & Achievements</h1>
+            <div className="w-20" />
+          </header>
+
+          <AchievementsPanel achievements={achievements} stats={stats} />
+        </div>
       </div>
     );
   }
