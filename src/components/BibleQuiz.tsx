@@ -2,14 +2,16 @@ import { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { translations } from '@/lib/translations';
 import { QUESTIONS, CATEGORY_COLORS, Question } from '@/data/quizQuestions';
+import { getTranslatedQuestions } from '@/data/translatedQuestions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { 
   BookOpen, Home, Trophy, Volume2, VolumeX, 
   Clock, Flame, Play, ChevronRight, RotateCcw,
-  Zap, Target, Award, Medal
+  Zap, Target, Award, Medal, Share2, Twitter, Facebook, Linkedin
 } from 'lucide-react';
+import { toast } from 'sonner';
 import { ThemeToggle } from './ThemeToggle';
 import LanguageSelector from './LanguageSelector';
 import { useAchievements } from '@/hooks/useAchievements';
@@ -151,7 +153,8 @@ const BibleQuiz = () => {
 
   const startQuiz = (category: string) => {
     setSelectedCategory(category);
-    const allQuestions = QUESTIONS[category] || [];
+    // Use translated questions based on current language
+    const allQuestions = getTranslatedQuestions(language, category);
     
     // Filter by difficulty
     const filteredQuestions = difficulty === 'all' 
@@ -171,6 +174,36 @@ const BibleQuiz = () => {
     setSelectedAnswer(null);
     setShowResult(false);
     setScreen('quiz');
+  };
+
+  // Social sharing functions
+  const getShareText = () => {
+    const percentage = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
+    return `🎯 ${t.title}: ${score}/${questions.length} (${percentage}%)! ${categoryNames[selectedCategory]} - ${t[difficulty] || difficulty}`;
+  };
+
+  const shareOnTwitter = () => {
+    const text = encodeURIComponent(getShareText());
+    window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+  };
+
+  const shareOnFacebook = () => {
+    const text = encodeURIComponent(getShareText());
+    window.open(`https://www.facebook.com/sharer/sharer.php?quote=${text}`, '_blank');
+  };
+
+  const shareOnLinkedIn = () => {
+    const text = encodeURIComponent(getShareText());
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}&summary=${text}`, '_blank');
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(getShareText());
+      toast.success(t.copied || 'Copied!');
+    } catch (err) {
+      toast.error('Failed to copy');
+    }
   };
 
   const handleAnswer = (index: number) => {
@@ -487,6 +520,45 @@ const BibleQuiz = () => {
               <div className="p-4 bg-muted rounded-lg">
                 <p className="text-3xl font-bold">{percentage}%</p>
                 <p className="text-sm text-muted-foreground">{t.percentage}</p>
+              </div>
+            </div>
+
+            {/* Social Sharing */}
+            <div className="mb-6">
+              <p className="text-sm text-muted-foreground mb-3">{t.shareResult || 'Share your result'}</p>
+              <div className="flex justify-center gap-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={shareOnTwitter}
+                  className="hover:bg-blue-500 hover:text-white transition-colors"
+                >
+                  <Twitter className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={shareOnFacebook}
+                  className="hover:bg-blue-600 hover:text-white transition-colors"
+                >
+                  <Facebook className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={shareOnLinkedIn}
+                  className="hover:bg-blue-700 hover:text-white transition-colors"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={copyToClipboard}
+                  className="hover:bg-amber-500 hover:text-white transition-colors"
+                >
+                  <Share2 className="w-4 h-4" />
+                </Button>
               </div>
             </div>
 
