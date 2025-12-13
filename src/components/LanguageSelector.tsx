@@ -31,7 +31,7 @@ const LanguageSelector: React.FC = () => {
     <div className="flex items-center gap-2">
       <Globe className="w-4 h-4 text-muted-foreground" />
       <Select value={language} onValueChange={(value) => setLanguage(value as any)}>
-        <SelectTrigger className="w-[140px] h-8 text-sm">
+        <SelectTrigger className="w-[140px] h-8 text-sm" aria-label="Select language">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
