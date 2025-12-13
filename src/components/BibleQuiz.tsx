@@ -239,7 +239,7 @@ const BibleQuiz = () => {
   // HOME SCREEN
   if (screen === 'home') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
+      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
         <div className="container mx-auto max-w-4xl">
           {/* Header */}
           <header className="flex justify-between items-center mb-8">
@@ -312,14 +312,14 @@ const BibleQuiz = () => {
           {/* Achievements Popup */}
           <AchievementPopup achievements={newUnlocks} onClose={clearNewUnlocks} />
         </div>
-      </div>
+      </main>
     );
   }
 
   // DIFFICULTY SELECTION
   if (screen === 'difficulty') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
+      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
         <div className="container mx-auto max-w-4xl">
           <header className="flex justify-between items-center mb-8">
             <Button variant="ghost" onClick={goHome} className="gap-2">
@@ -362,14 +362,14 @@ const BibleQuiz = () => {
             })}
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 
   // CATEGORY SELECTION
   if (screen === 'category') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
+      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
         <div className="container mx-auto max-w-4xl">
           <header className="flex justify-between items-center mb-8">
             <Button variant="ghost" onClick={() => setScreen('difficulty')} className="gap-2">
@@ -401,7 +401,7 @@ const BibleQuiz = () => {
             })}
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 
@@ -411,7 +411,7 @@ const BibleQuiz = () => {
     const progress = ((currentIndex + 1) / questions.length) * 100;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
+      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
         <div className="container mx-auto max-w-2xl">
           {/* Header */}
           <header className="flex justify-between items-center mb-6">
@@ -486,7 +486,7 @@ const BibleQuiz = () => {
             </div>
           )}
         </div>
-      </div>
+      </main>
     );
   }
 
@@ -496,7 +496,7 @@ const BibleQuiz = () => {
     const isPerfect = score === questions.length;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4 flex items-center justify-center">
+      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4 flex items-center justify-center">
         <Card className="w-full max-w-md text-center">
           <CardContent className="p-8">
             <Trophy className={`w-20 h-20 mx-auto mb-6 ${percentage >= 70 ? 'text-yellow-500' : percentage >= 50 ? 'text-gray-400' : 'text-amber-700'}`} />
@@ -584,14 +584,14 @@ const BibleQuiz = () => {
         
         {/* Achievements Popup */}
         <AchievementPopup achievements={newUnlocks} onClose={clearNewUnlocks} />
-      </div>
+      </main>
     );
   }
 
   // ACHIEVEMENTS SCREEN
   if (screen === 'achievements') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
+      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4">
         <div className="container mx-auto max-w-4xl">
           <header className="flex justify-between items-center mb-8">
             <Button variant="ghost" onClick={goHome} className="gap-2">
@@ -604,7 +604,7 @@ const BibleQuiz = () => {
 
           <AchievementsPanel achievements={achievements} stats={stats} />
         </div>
-      </div>
+      </main>
     );
   }
 
