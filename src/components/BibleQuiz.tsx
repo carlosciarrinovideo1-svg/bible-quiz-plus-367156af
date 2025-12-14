@@ -254,6 +254,7 @@ const BibleQuiz = () => {
                 variant="ghost"
                 size="icon"
                 onClick={() => setSoundEnabled(!soundEnabled)}
+                aria-label={soundEnabled ? "Disable sound" : "Enable sound"}
               >
                 {soundEnabled ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
               </Button>
