@@ -531,6 +531,7 @@ const BibleQuiz = () => {
                   variant="outline"
                   size="icon"
                   onClick={shareOnTwitter}
+                  aria-label="Share on Twitter"
                   className="hover:bg-blue-500 hover:text-white transition-colors"
                 >
                   <Twitter className="w-4 h-4" />
@@ -539,6 +540,7 @@ const BibleQuiz = () => {
                   variant="outline"
                   size="icon"
                   onClick={shareOnFacebook}
+                  aria-label="Share on Facebook"
                   className="hover:bg-blue-600 hover:text-white transition-colors"
                 >
                   <Facebook className="w-4 h-4" />
@@ -547,6 +549,7 @@ const BibleQuiz = () => {
                   variant="outline"
                   size="icon"
                   onClick={shareOnLinkedIn}
+                  aria-label="Share on LinkedIn"
                   className="hover:bg-blue-700 hover:text-white transition-colors"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -555,6 +558,7 @@ const BibleQuiz = () => {
                   variant="outline"
                   size="icon"
                   onClick={copyToClipboard}
+                  aria-label="Copy link to clipboard"
                   className="hover:bg-amber-500 hover:text-white transition-colors"
                 >
                   <Share2 className="w-4 h-4" />
