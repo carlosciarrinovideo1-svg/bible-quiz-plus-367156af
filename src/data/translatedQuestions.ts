@@ -1,5 +1,6 @@
 import { Question } from './quizQuestions';
 import { SPANISH_QUESTIONS } from './translations/spanishQuestions';
+import { FRENCH_QUESTIONS } from './translations/frenchQuestions';
 
 // Complete translations for all questions in all supported languages
 export const TRANSLATED_QUESTIONS: Record<string, Record<string, Question[]>> = {
