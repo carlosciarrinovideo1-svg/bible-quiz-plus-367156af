@@ -1,6 +1,7 @@
 import { Question } from './quizQuestions';
 import { SPANISH_QUESTIONS } from './translations/spanishQuestions';
 import { FRENCH_QUESTIONS } from './translations/frenchQuestions';
+import { GERMAN_QUESTIONS } from './translations/germanQuestions';
 
 // Complete translations for all questions in all supported languages
 export const TRANSLATED_QUESTIONS: Record<string, Record<string, Question[]>> = {
@@ -852,104 +853,8 @@ export const TRANSLATED_QUESTIONS: Record<string, Record<string, Question[]>> = 
   // ==================== FRENCH TRANSLATIONS ====================
   fr: FRENCH_QUESTIONS,
   // ==================== GERMAN TRANSLATIONS ====================
-  de: {
-    pentateuco: [
-      { q: "Wer baute die Arche nach Gottes Befehl?", a: ["Abraham", "Mose", "Noah", "David"], c: 2, difficulty: 'easy' },
-      { q: "Wie viele Tage dauerte die Sintflut?", a: ["7 Tage", "40 Tage", "100 Tage", "1 Jahr"], c: 1, difficulty: 'easy' },
-      { q: "Wer war der erste von Gott erschaffene Mensch?", a: ["Noah", "Abraham", "Adam", "Mose"], c: 2, difficulty: 'easy' },
-      { q: "An welchem Tag erschuf Gott den Menschen?", a: ["Ersten", "Dritten", "Sechsten", "Siebten"], c: 2, difficulty: 'easy' },
-      { q: "Wer führte die Israeliten aus Ägypten?", a: ["Abraham", "Mose", "Josua", "David"], c: 1, difficulty: 'easy' },
-      { q: "Wer war Kains Bruder?", a: ["Set", "Abel", "Henoch", "Lamech"], c: 1, difficulty: 'easy' },
-      { q: "Wie viele Söhne hatte Jakob?", a: ["10", "12", "14", "7"], c: 1, difficulty: 'easy' },
-      { q: "Wer wurde von seinen Brüdern als Sklave verkauft?", a: ["Benjamin", "Ruben", "Josef", "Juda"], c: 2, difficulty: 'easy' },
-      { q: "Wie hieß Abrahams Frau?", a: ["Rebekka", "Sara", "Rahel", "Lea"], c: 1, difficulty: 'easy' },
-      { q: "Wer empfing die Zehn Gebote?", a: ["Abraham", "Mose", "Aaron", "Josua"], c: 1, difficulty: 'easy' },
-    ],
-    vangeli: [
-      { q: "In welcher Stadt wurde Jesus geboren?", a: ["Nazareth", "Jerusalem", "Bethlehem", "Kapernaum"], c: 2, difficulty: 'easy' },
-      { q: "Wer taufte Jesus?", a: ["Petrus", "Johannes der Täufer", "Paulus", "Andreas"], c: 1, difficulty: 'easy' },
-      { q: "Wie viele Apostel wählte Jesus?", a: ["7", "10", "12", "15"], c: 2, difficulty: 'easy' },
-      { q: "Wer verriet Jesus?", a: ["Petrus", "Johannes", "Judas", "Thomas"], c: 2, difficulty: 'easy' },
-      { q: "Wie viele Brote vermehrte Jesus?", a: ["3", "5", "7", "12"], c: 1, difficulty: 'easy' },
-      { q: "Wer verleugnete Jesus dreimal?", a: ["Johannes", "Jakobus", "Petrus", "Andreas"], c: 2, difficulty: 'easy' },
-      { q: "Wo wirkte Jesus sein erstes Wunder?", a: ["Jerusalem", "Kana", "Betanien", "Nazareth"], c: 1, difficulty: 'easy' },
-      { q: "Was verwandelte Jesus in Wein?", a: ["Milch", "Wasser", "Öl", "Saft"], c: 1, difficulty: 'easy' },
-      { q: "Wo wurde Jesus gekreuzigt?", a: ["Ölberg", "Golgatha", "Berg Sinai", "Betanien"], c: 1, difficulty: 'easy' },
-      { q: "Wer half Jesus das Kreuz zu tragen?", a: ["Petrus", "Simon von Kyrene", "Johannes", "Josef"], c: 1, difficulty: 'easy' },
-    ],
-    antico_testamento: [
-      { q: "Wer war der erste König Israels?", a: ["David", "Saul", "Salomo", "Josia"], c: 1, difficulty: 'easy' },
-      { q: "Wer tötete Goliath?", a: ["Saul", "Jonatan", "David", "Simson"], c: 2, difficulty: 'easy' },
-      { q: "Wer war für seine Stärke berühmt?", a: ["David", "Simson", "Saul", "Goliath"], c: 1, difficulty: 'easy' },
-      { q: "Wer baute den ersten Tempel?", a: ["David", "Salomo", "Mose", "Hiskia"], c: 1, difficulty: 'easy' },
-      { q: "Wer wurde in die Löwengrube geworfen?", a: ["Hesekiel", "Jeremia", "Daniel", "Elia"], c: 2, difficulty: 'easy' },
-      { q: "Wie viele Stämme hatte Israel?", a: ["10", "12", "14", "7"], c: 1, difficulty: 'easy' },
-      { q: "Wer folgte Mose nach?", a: ["Aaron", "Kaleb", "Josua", "Eleasar"], c: 2, difficulty: 'easy' },
-      { q: "Wer wurde in einem feurigen Wagen in den Himmel entrückt?", a: ["Mose", "Elia", "Henoch", "Elisa"], c: 1, difficulty: 'easy' },
-      { q: "Wer schrieb die meisten Sprüche?", a: ["David", "Salomo", "Mose", "Jesaja"], c: 1, difficulty: 'easy' },
-      { q: "Wie viele Psalmen gibt es in der Bibel?", a: ["100", "120", "150", "200"], c: 2, difficulty: 'easy' },
-    ],
-    nuovo_testamento: [
-      { q: "Wer schrieb die meisten Briefe im NT?", a: ["Petrus", "Johannes", "Paulus", "Jakobus"], c: 2, difficulty: 'easy' },
-      { q: "Wer verfolgte Christen vor seiner Bekehrung?", a: ["Petrus", "Jakobus", "Paulus", "Barnabas"], c: 2, difficulty: 'easy' },
-      { q: "Wo fand Pfingsten statt?", a: ["Jerusalem", "Antiochia", "Rom", "Ephesus"], c: 0, difficulty: 'easy' },
-      { q: "Wer taufte den äthiopischen Kämmerer?", a: ["Petrus", "Philippus", "Paulus", "Johannes"], c: 1, difficulty: 'easy' },
-      { q: "Wer war der erste christliche Märtyrer?", a: ["Petrus", "Jakobus", "Stephanus", "Paulus"], c: 2, difficulty: 'easy' },
-      { q: "Auf welche Insel wurde Johannes verbannt?", a: ["Zypern", "Kreta", "Patmos", "Malta"], c: 2, difficulty: 'easy' },
-      { q: "Wer schrieb die Apostelgeschichte?", a: ["Paulus", "Petrus", "Lukas", "Johannes"], c: 2, difficulty: 'easy' },
-      { q: "Wer schrieb die Offenbarung?", a: ["Paulus", "Petrus", "Lukas", "Johannes"], c: 3, difficulty: 'easy' },
-      { q: "Wie viele Gemeinden erhielten Briefe in der Offenbarung?", a: ["5", "7", "10", "12"], c: 1, difficulty: 'easy' },
-      { q: "Was ist das letzte Buch der Bibel?", a: ["Judas", "Hebräer", "Offenbarung", "3. Johannes"], c: 2, difficulty: 'easy' },
-    ],
-    profeti: [
-      { q: "Wer wurde als Jugendlicher zum Propheten berufen?", a: ["Jesaja", "Jeremia", "Hesekiel", "Daniel"], c: 1, difficulty: 'easy' },
-      { q: "Wer hatte die Vision der verdorrten Gebeine?", a: ["Jesaja", "Jeremia", "Hesekiel", "Daniel"], c: 2, difficulty: 'easy' },
-      { q: "Wer prophezeite die Geburt des Messias in Bethlehem?", a: ["Jesaja", "Micha", "Jeremia", "Hosea"], c: 1, difficulty: 'easy' },
-      { q: "Wer wurde ins Meer geworfen und von einem großen Fisch verschluckt?", a: ["Elia", "Elisa", "Jona", "Amos"], c: 2, difficulty: 'easy' },
-      { q: "Wer schrieb 'Heilig, heilig, heilig ist der Herr'?", a: ["Jesaja", "Jeremia", "Hesekiel", "Daniel"], c: 0, difficulty: 'easy' },
-      { q: "Wer deutete Nebukadnezars Träume?", a: ["Jesaja", "Jeremia", "Hesekiel", "Daniel"], c: 3, difficulty: 'easy' },
-      { q: "Wer wurde in die Löwengrube geworfen?", a: ["Jesaja", "Jeremia", "Hesekiel", "Daniel"], c: 3, difficulty: 'easy' },
-      { q: "Wohin wollte Jona nicht gehen?", a: ["Tarsis", "Ninive", "Babylon", "Ägypten"], c: 1, difficulty: 'easy' },
-      { q: "Wer prophezeite die Zerstörung Ninives?", a: ["Jona", "Nahum", "Obadja", "Zefanja"], c: 1, difficulty: 'easy' },
-      { q: "Wer prophezeite die Jungfrauengeburt?", a: ["Jesaja", "Jeremia", "Micha", "Hosea"], c: 0, difficulty: 'easy' },
-    ],
-    lettere_paoline: [
-      { q: "Wie viele Briefe schrieb Paulus?", a: ["7", "10", "13", "21"], c: 2, difficulty: 'easy' },
-      { q: "An welche Gemeinde schrieb Paulus über die Liebe?", a: ["Rom", "Korinth", "Ephesus", "Philippi"], c: 1, difficulty: 'easy' },
-      { q: "Welcher Brief spricht von der Waffenrüstung Gottes?", a: ["Römer", "Epheser", "Philipper", "Kolosser"], c: 1, difficulty: 'easy' },
-      { q: "Welcher Brief spricht von Freude?", a: ["Römer", "Galater", "Philipper", "Kolosser"], c: 2, difficulty: 'easy' },
-      { q: "Wer war Philemon?", a: ["Ein Apostel", "Ein Christ mit einem Sklaven", "Ein Prophet", "Ein Priester"], c: 1, difficulty: 'easy' },
-      { q: "Wer war Onesimus?", a: ["Ein Apostel", "Ein Prophet", "Ein entlaufener Sklave", "Ein Priester"], c: 2, difficulty: 'easy' },
-      { q: "Welches ist der längste Brief des Paulus?", a: ["1. Korinther", "Römer", "Epheser", "Galater"], c: 1, difficulty: 'easy' },
-      { q: "Welches Kapitel spricht von der Liebe?", a: ["Römer 8", "1. Korinther 13", "Epheser 6", "Philipper 4"], c: 1, difficulty: 'easy' },
-      { q: "Welche ist die erste Frucht des Geistes?", a: ["Freude", "Friede", "Liebe", "Geduld"], c: 2, difficulty: 'easy' },
-      { q: "Welcher Brief spricht von der Rechtfertigung durch Glauben?", a: ["Römer", "Galater", "Beide", "Keiner"], c: 2, difficulty: 'easy' },
-    ],
-    salmi: [
-      { q: "Wie viele Psalmen gibt es in der Bibel?", a: ["100", "120", "150", "200"], c: 2, difficulty: 'easy' },
-      { q: "Wer schrieb die meisten Psalmen?", a: ["Mose", "David", "Salomo", "Asaf"], c: 1, difficulty: 'easy' },
-      { q: "Welcher Psalm beginnt mit 'Der Herr ist mein Hirte'?", a: ["Psalm 1", "Psalm 22", "Psalm 23", "Psalm 51"], c: 2, difficulty: 'easy' },
-      { q: "Welcher ist der längste Psalm?", a: ["Psalm 23", "Psalm 51", "Psalm 119", "Psalm 150"], c: 2, difficulty: 'easy' },
-      { q: "Welcher Psalm ist ein Bußgebet?", a: ["Psalm 1", "Psalm 23", "Psalm 51", "Psalm 100"], c: 2, difficulty: 'easy' },
-      { q: "Welcher Psalm spricht von Gottes Schutz?", a: ["Psalm 1", "Psalm 23", "Psalm 91", "Alle diese"], c: 3, difficulty: 'easy' },
-      { q: "In wie viele Bücher sind die Psalmen unterteilt?", a: ["3", "4", "5", "7"], c: 2, difficulty: 'easy' },
-      { q: "Welcher Psalm lädt zum Lob mit Instrumenten ein?", a: ["Psalm 1", "Psalm 23", "Psalm 150", "Psalm 51"], c: 2, difficulty: 'easy' },
-      { q: "Welches Tal durchschreitet der Psalmist?", a: ["Tal der Blumen", "Tal des Todesschattens", "Grünes Tal", "Tiefes Tal"], c: 1, difficulty: 'easy' },
-      { q: "Was bereitet der Herr in Psalm 23?", a: ["Ein Bett", "Einen Tisch", "Ein Haus", "Einen Garten"], c: 1, difficulty: 'easy' },
-    ],
-    proverbi: [
-      { q: "Wer schrieb die meisten Sprüche?", a: ["David", "Salomo", "Mose", "Asaf"], c: 1, difficulty: 'easy' },
-      { q: "Wie viele Kapitel hat das Buch der Sprüche?", a: ["25", "28", "31", "36"], c: 2, difficulty: 'easy' },
-      { q: "Was ist das Hauptthema der Sprüche?", a: ["Geschichte", "Weisheit", "Prophetie", "Gesetz"], c: 1, difficulty: 'easy' },
-      { q: "Was ist 'der Anfang der Weisheit'?", a: ["Studium", "Die Furcht des Herrn", "Erfahrung", "Alter"], c: 1, difficulty: 'easy' },
-      { q: "Wer ist die Frau in Sprüche 31?", a: ["Eine Königin", "Eine tugendhafte Frau", "Eine Prophetin", "Eine Priesterin"], c: 1, difficulty: 'easy' },
-      { q: "Was sagen Sprüche über Faulheit?", a: ["Sie ist gesegnet", "Man soll sie meiden", "Sie ist verständlich", "Nichts"], c: 1, difficulty: 'easy' },
-      { q: "Von welchem Insekt soll der Faule lernen?", a: ["Biene", "Ameise", "Schmetterling", "Grille"], c: 1, difficulty: 'easy' },
-      { q: "Wer wird als Frau personifiziert in Sprüche?", a: ["Schönheit", "Weisheit", "Reichtum", "Stärke"], c: 1, difficulty: 'easy' },
-      { q: "Was sagen Sprüche über die Zunge?", a: ["Sie hat Macht über Leben und Tod", "Sie ist klein", "Sie ist schnell", "Sie ist langsam"], c: 0, difficulty: 'easy' },
-      { q: "Was bewirkt eine sanfte Antwort?", a: ["Schwäche", "Wendet den Grimm ab", "Verwirrung", "Schande"], c: 1, difficulty: 'easy' },
-    ],
-  },
+  de: GERMAN_QUESTIONS,
+};
 };
 
 // Helper function to get translated questions with fallback to Italian
